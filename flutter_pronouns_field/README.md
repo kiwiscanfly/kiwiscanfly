@@ -159,3 +159,5 @@ final Map<String, Pronouns> neopronouns = {
 ```
 
 and that's all there is to it! Less than 500 lines of code.
+
+**Bonus Points:** to let your users fully express themselves, give them the option to add multiple sets of pronouns!
