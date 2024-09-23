@@ -170,11 +170,11 @@ class PronounsFieldState extends State<PronounsField> {
 
     if (lowerSubject.endsWith('s')) {
       return '${lowerSubject}self';
-    } else if (lowerSubject.length == 1 || lowerSubject.endsWith('i')) {
-      return '${lowerSubject}erself';
-    } else {
-      return '${lowerSubject}self';
     }
+    if (lowerSubject.length == 1 || lowerSubject.endsWith('i')) {
+      return '${lowerSubject}erself';
+    }
+    return '${lowerSubject}self';
   }
 
   String _generateObject(String subject) {
@@ -183,13 +183,13 @@ class PronounsFieldState extends State<PronounsField> {
     if (lowerSubject.endsWith('e')) {
       // Vowel-ending subjects like "xe", "ze" often add "m" or "r" for object forms
       return '${lowerSubject}m';
-    } else if (lowerSubject.endsWith('s') || lowerSubject.endsWith('r')) {
+    }
+    if (lowerSubject.endsWith('s') || lowerSubject.endsWith('r')) {
       // Subjects ending in "s" often remain unchanged
       return lowerSubject;
-    } else {
-      // Default to adding 'r' if it makes sense for smoothness
-      return '${lowerSubject}r';
     }
+    // Default to adding 'r' if it makes sense for smoothness
+    return '${lowerSubject}r';
   }
 
   String _generatePossessivePronoun(String subject) {
@@ -198,16 +198,17 @@ class PronounsFieldState extends State<PronounsField> {
     if (lowerSubject.endsWith('e')) {
       // Vowel-ending subjects like "xe", "ze" typically add "r" + "s"
       return '${lowerSubject}rs';
-    } else if (lowerSubject.endsWith('s')) {
+    }
+    if (lowerSubject.endsWith('s')) {
       // Subjects ending in "s" can remain unchanged
       return lowerSubject;
-    } else if (lowerSubject.length == 1 || lowerSubject.endsWith('i')) {
+    }
+    if (lowerSubject.length == 1 || lowerSubject.endsWith('i')) {
       // Short or single-syllable subjects add "r" + "s"
       return '${lowerSubject}rs';
-    } else {
-      // Default case for other subjects, adding 'r' + 's'
-      return '${lowerSubject}s';
     }
+    // Default case for other subjects, adding 'r' + 's'
+    return '${lowerSubject}s';
   }
 
   void _fillPronouns(String subject) {
